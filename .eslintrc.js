@@ -79,6 +79,11 @@ module.exports = {
         checkProperties: true,
       },
     ],
+    /**
+     * @info react rules
+     */
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     'import/resolver': {
