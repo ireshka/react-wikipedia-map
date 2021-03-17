@@ -2,26 +2,47 @@
   "name": "react-wikipedia-map",
   "version": "0.1.0",
   "private": true,
+  "description": "Connect Google Maps with Wikipedia API",
+  "keywords": [
+    "google-maps",
+    "wikipedia",
+    "styled-components",
+    "react"
+  ],
+  "repository": "https://github.com/ireshka/react-wikipedia-map.git",
+  "homepage": "https://github.com/ireshka/react-wikipedia-map",
+  "bugs": "https://github.com/ireshka/react-wikipedia-map/issues",
+  "author": {
+    "name": "Małgorzata Olborska",
+    "email": "reshcode@gmail.com",
+    "url": "https://github.com/ireshka"
+  },
+  "license": "MIT",
   "dependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "eslint-find-rules": "^3.6.1",
+    "eslint-plugin-better-styled-components": "^1.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postinstall": "husky install",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "check:eslint:deprecated": "eslint-find-rules --deprecated -no-error .eslintrc.js",
+    "check:eslint:unused": "eslint-find-rules --unused -no-error .eslintrc.js",
+    "eslint-check": "eslint src/**/*.{ts,tsx}",
+    "eslint-fix": "eslint src/**/*.{ts,tsx} --fix",
+    "precommit": "lint-staged"
   },
   "browserslist": {
     "production": [
@@ -34,5 +55,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-jest-dom": "^3.6.5",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-testing-library": "^3.10.1",
+    "eslint-plugin-unicorn": "^28.0.2",
+    "husky": "^5.1.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
   }
 }
