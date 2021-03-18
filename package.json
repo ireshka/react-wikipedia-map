@@ -38,10 +38,10 @@
     "postinstall": "husky install",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "check:eslint": "eslint src/**/*.{js,jsx}",
+    "check:eslint:fix": "eslint src/**/*.{js,jsx} --fix",
     "check:eslint:deprecated": "eslint-find-rules --deprecated -no-error .eslintrc.js",
     "check:eslint:unused": "eslint-find-rules --unused -no-error .eslintrc.js",
-    "eslint-check": "eslint src/**/*.{ts,tsx}",
-    "eslint-fix": "eslint src/**/*.{ts,tsx} --fix",
     "precommit": "lint-staged"
   },
   "browserslist": {
