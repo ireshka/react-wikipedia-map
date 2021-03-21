@@ -1,19 +1,21 @@
 import styled from 'styled-components';
-import { Layout } from 'antd';
+import { Layout, Typography } from 'antd';
 
 const { Header, Content, Footer: AntFooter } = Layout;
+const { Link } = Typography;
 
 const Logo = styled.h2`
   color: #ffffff;
 `;
 
 const Inner = styled(Content)`
-  background: #fff;
+  background: #ffffff;
   min-height: 280px;
   padding: 24px;
 `;
 
 const Footer = styled(AntFooter)`
+  padding: 12px;
   text-align: center;
 `;
 
@@ -30,7 +32,10 @@ export default function Page() {
       <Inner>
         <div className="site-layout-content">Content</div>
       </Inner>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer>
+        Created by <Link href="https://github.com/ireshka">@ireshka</Link> during{' '}
+        <Link href="https://www.netguru.com/netguru-college">Netguru College</Link>
+      </Footer>
     </StyledLayout>
   );
 }
