@@ -1,6 +1,6 @@
 import './App.css';
-import Page from './components/Page';
+import MapView from './views/map';
 
-const App = () => <Page />;
+const App = () => <MapView />;
 
 export default App;
