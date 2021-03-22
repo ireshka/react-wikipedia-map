@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
 import mapStyles from './mapStyles';
+import WikipediaApi from '../services/api/wikipedia';
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -27,6 +28,11 @@ const GoogleMapWrapper = styled.div`
 const GoogleMap = () => {
   useEffect(() => {
     console.log('First map load');
+    async function fetchArticles() {
+      const articles = await WikipediaApi.getArticles({ coords: warsawOldTownPosition });
+      console.log(articles);
+    }
+    fetchArticles();
   }, []);
 
   return (
