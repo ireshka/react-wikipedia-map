@@ -1,6 +1,8 @@
 /* eslint-disable unicorn/prevent-abbreviations */
-/* eslint-disable no-console */
+import createDebug from 'debug';
 import ky from 'ky';
+
+const debug = createDebug('wikipedia-map:services:wikipedia');
 
 const client = ky.create({
   prefixUrl: 'https://en.wikipedia.org/w/',
@@ -9,7 +11,7 @@ const client = ky.create({
   },
 });
 
-const getArticles = ({ coords, radius = 10000, limit = 15 }) => {
+const getArticles = async ({ coords, radius = 10000, limit = 15 }) => {
   const params = {
     action: 'query',
     list: 'geosearch',
@@ -17,9 +19,10 @@ const getArticles = ({ coords, radius = 10000, limit = 15 }) => {
     origin: '*',
   };
   if (!coords) {
-    console.error('Wikipedia API: no coords passed');
+    debug('Wikipedia API: no coords passed');
   }
-  return client
+
+  const response = await client
     .get('api.php?', {
       searchParams: {
         ...params,
@@ -29,6 +32,10 @@ const getArticles = ({ coords, radius = 10000, limit = 15 }) => {
       },
     })
     .json();
+  const {
+    query: { geosearch: articles },
+  } = response;
+  return articles;
 };
 
 const api = {

@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
 import mapStyles from './mapStyles';
-import WikipediaApi from '../services/api/wikipedia';
+import { emit, mapEvents } from '../views/map/mediator';
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const defaultZoom = 13;
+const defaultZoom = 15;
 
 const warsawOldTownPosition = {
   lat: 52.24965909571318,
@@ -15,8 +15,8 @@ const warsawOldTownPosition = {
 };
 
 const createMapOptions = {
-  maxZoom: 16,
-  minZoom: 10,
+  maxZoom: 17,
+  minZoom: 13,
   styles: mapStyles.styles,
 };
 
@@ -28,11 +28,7 @@ const GoogleMapWrapper = styled.div`
 const GoogleMap = () => {
   useEffect(() => {
     console.log('First map load');
-    async function fetchArticles() {
-      const articles = await WikipediaApi.getArticles({ coords: warsawOldTownPosition });
-      console.log(articles);
-    }
-    fetchArticles();
+    emit(mapEvents.mapFirstLoaded, warsawOldTownPosition);
   }, []);
 
   return (
@@ -43,6 +39,7 @@ const GoogleMap = () => {
         defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         options={createMapOptions}
+        onChange={(event) => emit(mapEvents.mapDragged, event.center)}
       />
     </GoogleMapWrapper>
   );
